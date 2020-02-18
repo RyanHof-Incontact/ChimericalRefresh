@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Digital Engagement Demo Portal</title>
+
+<script>
+
+/** Partner Specific AgentID and click-to-call phone number **
+
+This is to allow a partner would like to hard-code some values,
+thereby removing the need to enter your AgentID and phone number
+each time you access the page.
+
+************************************************************/
+
+phoneNum=
+agentID=
+</script>
+
+<!-- Live chat script should go here-->
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<style type="text/css">
+*{padding:0;margin:0;}
+body{
+	font-family:Verdana, Geneva, sans-serif;
+	background-color:#fff;
+	font-size:12px;
+}
+.label-container{
+	position:fixed;
+	bottom:48px;
+	right:105px;
+	display:table;
+	visibility: hidden;
+}
+.label-text{
+	color:#FFF;
+	background:rgba(51,51,51,0.5);
+	display:table-cell;
+	vertical-align:middle;
+	padding:10px;
+	border-radius:3px;
+}
+.label-arrow{
+	display:table-cell;
+	vertical-align:middle;
+	color:#333;
+	opacity:0.5;
+}
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#E5278C;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+	z-index:1000;
+	animation: bot-to-top 2s ease-out;
+}
+ul{
+	position:fixed;
+	right:40px;
+	padding-bottom:20px;
+	bottom:80px;
+	z-index:100;
+}
+ul li{
+	list-style:none;
+	margin-bottom:10px;
+}
+ul li a{
+	background-color:#009EDA;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+	width:60px;
+	height:60px;
+	display:block;
+}
+ul:hover{
+	visibility:visible!important;
+	opacity:1!important;
+}
+.my-float{
+	font-size:24px;
+	margin-top:18px;
+}
+a#menu-share + ul{
+  visibility: hidden;
+}
+a#menu-share:hover + ul{
+  visibility: visible;
+  animation: scale-in 0.5s;
+}
+a#menu-share i{
+	animation: rotate-in 0.5s;
+}
+a#menu-share:hover > i{
+	animation: rotate-out 0.5s;
+}
+@keyframes bot-to-top {
+    0%   {bottom:-40px}
+    50%  {bottom:40px}
+}
+@keyframes scale-in {
+    from {transform: scale(0);opacity: 0;}
+    to {transform: scale(1);opacity: 1;}
+}
+@keyframes rotate-in {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+@keyframes rotate-out {
+    from {transform: rotate(360deg);}
+    to {transform: rotate(0deg);}
+}
+</style>
+
+
+<script>
+
+/****** inContact Business Unit Configuration Settings ********
+This section to be completed by inContact Professional Services
+**************************************************************/
+
+// Partner Name - this will be used in the
+var partnerName = 'CXone'
+
+// This is the inbound POC that uses the Inbound_IVR script
+var phonePOC = 8449281394
+
+// This is the Chat POC URL that uses the Inbound_Chat script
+var chatURL = 'https://home-c32.nice-incontact.com/incontact/chatclient/chatclient.aspx?poc=4e36a2ac-253e-4c2d-bda4-d506a7c3e3bc&bu=4596619'
+
+// This is the Email POC that uses the Inbound_Email script
+var emailPOC = 'chimericalcorporation0@gmail.com'
+
+// **Important** Make sure your URL is using encryption (https) This is the Spawn Script URL for the Inbound_IVR script
+var phoneURL = 'https://home-b32.nice-incontact.com/inContact/Manage/Scripts/Spawn.aspx?scriptName=Demo%20Portal\Inbound_IVR&bus_no=4598817&scriptId=26888234&skill_no=4136556&p1=&p2=&p3=&p4=&p5=&Guid=a425c182-db20-4e0c-a99a-4b374f97ad1e'
+
+/************* Do not modify anything below *******************
+     Doing so will cause the page to function incorrectly
+**************************************************************/
+var userValid;
+var displayPOC;
+var phoneValid;
+var finalResult = '';
+var bodyVar = 'I need some support please.';
+var subject;
+
+function loadFunction() {
+   if (agentID > 0 ) {
+	document.getElementById("agentField").defaultValue= +agentID;
+	document.getElementById("agentField").type='hidden';
+
+	}
+	if (phoneNum > 999999999 ) {
+	document.getElementById("phoneField").defaultValue= +phoneNum;
+	}
+	result.textContent = finalResult;
+	document.title = partnerName + ' Demo Portal';
+}
+window.onload = loadFunction
+
+
+function buildURL(theAction) {
+var userValid = 0;
+var phoneValid = 0;
+var finalResult = '';
+
+var agentField = document.getElementById('agentField').value;
+var result = document.getElementById('result');
+
+if (agentField.length < 1) {
+finalResult = 'AgentID must be entered.';
+}
+else {
+	if (agentField.length < 6) {
+	finalResult = 'AgentID will be 6-7 digits';
+	}
+
+	else if (isNaN(agentField) == true){
+		finalResult = 'AgentID must be numerical.';
+	}
+	else {
+		agentID = document.getElementById('agentField').value;
+		subject = 'Help with case ' + document.getElementById('agentField').value;
+		userValid = 1;
+	}
+}
+if (userValid == 1) {
+
+  //Phone logic
+     if (theAction == 'phone') {
+
+		phoneNum = document.getElementById('phoneField').value;
+
+		if (phoneNum.length > 9)  {
+		phoneValid = 1;
+
+
+
+					//var theURL = location.href;
+			var actionURL = 'https://home-b32.nice-incontact.com/inContact/Manage/Scripts/Spawn.aspx?scriptName=Demo%20Portal%5CInbound_IVR&bus_no=4598817&scriptId=26888234&skill_no=4136556&p1=&p2=&p3=&p4=&p5=&Guid=a425c182-db20-4e0c-a99a-4b374f97ad1e'
+
+			ctdURL = actionURL;
+			ctdURL += '&p1='
+			ctdURL += agentID
+			ctdURL += '&p2='
+			ctdURL += phonePOC
+			ctdURL += '&p3='
+			ctdURL += phoneNum
+			ctdURL += '&p4='
+			ctdURL += partnerName
+
+			//Build form
+			var myform = document.createElement("form");
+            myform.action = ctdURL;
+			myform.target = "_blank";
+            myform.method = "post";
+            document.body.appendChild(myform);
+			//myform.submit();
+
+
+			ChatWindow = window.open(ctdURL,"Chat","location=0,menu=0,resize=0,status=0,scrollbars=0,width=1,height=1,left=111000,top=111000");
+			setTimeout(function() {ChatWindow.close();},1250);
+
+		//document.getElementById('phoneLink').click();
+
+		finalResult =  'Dialing ' + phoneNum;
+
+		}
+		else {
+			finalResult = 'Please enter a valid phone number';
+		}
+
+	}
+
+	//Email logic
+   else if (theAction == 'email') {
+	document.getElementById('emailLink').click();
+	finalResult =  'Creating Email...';
+}
+
+	//Chat logic
+	else if (theAction == 'chat') {
+
+	openURL = chatURL;
+	openURL += '&p1=' + agentID
+
+	document.getElementById('chatLink').click();
+
+	finalResult =  'Opening Chat session...';
+
+	}
+
+	//Advanced Chat logic
+	else if (theAction == 'advancedChat') {
+
+	openURL = bankURL;
+	openURL += '&p1=' + agentID
+	document.getElementById('bankLink').click();
+
+	openURL = spawnURL;
+	openURL += '&p1=' + agentID
+	document.getElementById('spawnLink').click();
+
+
+
+	finalResult =  'Opening Chat session...';
+
+	}
+
+}
+result.textContent = finalResult;
+
+}
+
+function sendFeedback() {
+	document.getElementById('feedbackLink').click();
+	finalResult =  'Creating Feedback Email...';
+	result.textContent = finalResult;
+}
+
+function showInboundPOC() {
+	var POC = phonePOC.toString();
+	if (POC.length == 10) {
+	var p1 = POC.substring(0, 3);
+	var p2 = POC.substring(3, 6);
+	var p3 = POC.substring(6, 10);
+	displayPOC = '(' + p1 + ') ' + p2 + '-' + p3;
+	}
+	else {
+		displayPOC = POC;
+	}
+	finalResult =  'Call ' + displayPOC + ' to test inbound IVR';
+	result.textContent = finalResult;
+}
+
+function clearContext() {
+	finalResult =  '';
+	result.textContent = finalResult;
+}
+
+</script>
+
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="ChimericalHome.html">Chimerical Company</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+      </ul>
+    </div>
+  <!-- End left side of the nav bar -->
+  <!-- Right side of the nav bar -->
+      <p class="text-white" style="padding-right:15px; padding-top:15px"><b>Reach Us Directly & Quickly </b></p>
+      <form class="form-inline my-2 my-lg-0">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit" formaction="https://www.google.com">Click to Call</button>
+      </form>
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bus Unit</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="">B32</a>
+          <a class="dropdown-item" href="#">C32</a>
+          <a class="dropdown-item" href="#">B2</a>
+          <a class="dropdown-item" href="#">B2 Lab</a>
+        </div>
+      </div>
+      <!-- End right side elements -->
+  </nav>
+<!-- End Navigation -->
+
+<center>
+<p>
+<img onclick="buildURL('phone'); setTimeout(clearContext, 3000);" src="https://chimericalcorporation.com/be/top.png" alt="Phone" title="Click to Call" id="phoneImg">
+<img src="https://chimericalcorporation.com/be/mid2.png">
+
+</p>
+<p>
+
+<div class='wrapper'>
+<form id='nameForm'>
+<div class='form-uname'>
+
+    <input id='agentField' type='text' maxlength='7' placeholder='Agent ID'></input>
+
+	<a href="#" onclick="javascript:window.location='mailto:'+emailPOC+'?subject='+subject+'&body='+bodyVar" id="emailLink"></a>
+	<a href="#" onclick="javascript:window.open(openURL, 'newwindow', 'width=500, height=500'); return false;" id="chatLink"></a>
+	<a href="#" onclick="javascript:window.open(ctdURL, 'myframe', 'width=0, height=0'); return false;" id="phoneLink"></a>
+</div>
+</form>
+
+
+</center>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<center>
+<img onclick="showInboundPOC()" src="https://chimericalcorporation.com/cxone/assets/img/NICE-inContact_logo.png" alt="Inbound_POC" title="Get Inbound POC">
+</center>
+
+<center><i>Click to Dial:  </i><input id='phoneField' type='text' maxlength='15' placeholder='Phone Number'></input>
+<div>
+    <b><font color="009EDA"><p id='result'></p></div></font></b>
+</div>
+</center>
+
+<a href="#" class="float" id="menu-share">
+<i class="fa fa-share my-float"></i>
+</a>
+<ul>
+<li><a href="https://twitter.com/Chimerical_Corp" target="_blank" id="menu-twitter">
+<i class="fa fa-twitter my-float"></i>
+</li>
+</a>
+<li><a href="https://www.facebook.com/Chimerical-Corp-CXone-102951727717843" target="_blank" id="menu-facebook">
+<i class="fa fa-facebook my-float"></i>
+</li>
+</a>
+<li><a href="https://api.whatsapp.com/send?phone=+14133620293" target="_blank" id="menu-whatsapp">
+<i class="fa fa-whatsapp my-float"></i>
+</li>
+</a>
+
+
+</ul>
+
+</body>
+<footer>
+	<div class="footer-copyright text-center py-3">© 2020 Copyright <i>Development</i>:<br>
+		<p>If you'd like to reach us by email <a href="mailto:testemail@email.com"><b>Click Here</b></a></p>
+		<br> You are currently signed in as </br>
+		<a href="UserAccount.html"><b>Your Profile</b></a><br>
+		<a href="Signin.html"><b>Sign Out</b></a><br>
+	</div>
+</footer>
+</html>
