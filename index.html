@@ -315,6 +315,7 @@
 <script type="text/javascript">
     // Essentially we are telling the system that the uploaded/chosen image is to be set as the background by identifying the id and applying the image url
     document.getElementById('getval').addEventListener('change', readURL, true);
+    document.ready(closeForm());
 
     function readURL() {
         var file = document.getElementById("getval").files[0];
