@@ -1,0 +1,359 @@
+<html>
+
+<head>
+    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- inline css, is very basic right now just to get it to work, but will format to match the overall design of the templates -->
+    <style id="compiled-css" type="text/css">
+        #imageLocation {
+            background-image: url('');
+            background-size: contain;
+            /* Can also replace 'contain' with "100% 100%" | Which will stretch the image to fit the whole div */
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100%;
+            width: 100%;
+            border: 1px solid #bbb;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+
+            /* make it look decent enough */
+            background: #232323;
+            color: #cdcdcd;
+            font-family: "Avenir Next", "Avenir", sans-serif,"Arial", "Helvetica";
+        }
+        * {
+            box-sizing: border-box;
+        }
+
+        #menuToggle {
+            display: block;
+            position: relative;
+            top: 50px;
+            left: 50px;
+
+            z-index: 1;
+
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        #menuToggle a {
+            text-decoration: none;
+            color: #232323;
+
+            transition: color 0.3s ease;
+        }
+
+        #menuToggle a:hover {
+            color: tomato;
+        }
+
+
+        #menuToggle input {
+            display: block;
+            width: 40px;
+            height: 32px;
+            position: absolute;
+            top: -7px;
+            left: -5px;
+
+            cursor: pointer;
+
+            opacity: 0;
+            /* hide this */
+            z-index: 2;
+            /* and place it over the hamburger */
+
+            -webkit-touch-callout: none;
+        }
+
+        /*
+ * Just a quick hamburger
+ */
+        #menuToggle span {
+            display: block;
+            width: 33px;
+            height: 4px;
+            margin-bottom: 5px;
+            position: relative;
+
+            background: #cdcdcd;
+            border-radius: 3px;
+
+            z-index: 1;
+
+            transform-origin: 4px 0px;
+
+            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+                background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+                opacity 0.55s ease;
+        }
+
+        #menuToggle span:first-child {
+            transform-origin: 0% 0%;
+        }
+
+        #menuToggle span:nth-last-child(2) {
+            transform-origin: 0% 100%;
+        }
+
+        /* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+        #menuToggle input:checked~span {
+            opacity: 1;
+            transform: rotate(45deg) translate(-2px, -1px);
+            background: #232323;
+        }
+
+        /*
+ * But let's hide the middle one.
+ */
+        #menuToggle input:checked~span:nth-last-child(3) {
+            opacity: 0;
+            transform: rotate(0deg) scale(0.2, 0.2);
+        }
+
+        /*
+ * Ohyeah and the last one should go the other direction
+ */
+        #menuToggle input:checked~span:nth-last-child(2) {
+            transform: rotate(-45deg) translate(0, -1px);
+        }
+
+        /*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+        #menu {
+            position: absolute;
+            width: 300px;
+            margin: -100px 0 0 -50px;
+            padding: 50px;
+            padding-top: 125px;
+
+            background: #ededed;
+            list-style-type: none;
+            -webkit-font-smoothing: antialiased;
+            /* to stop flickering of text in safari */
+
+            transform-origin: 0% 0%;
+            transform: translate(-100%, 0);
+
+            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+        }
+
+        #menu li {
+            padding: 10px 0;
+            font-size: 22px;
+        }
+
+        /*
+ * And let's slide it in from the left
+ */
+        #menuToggle input:checked~ul {
+            transform: none;
+        }
+
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        .sticky+.content {
+            padding-top: 60px;
+        }
+
+            {
+            box-sizing: border-box;
+        }
+
+        /* Button used to open the chat form - fixed at the bottom of the page */
+        .open-button {
+            background-color: #555;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 0.8;
+            position: fixed;
+            bottom: 23px;
+            right: 28px;
+            width: 280px;
+        }
+
+        /* The popup chat - hidden by default */
+        .form-popup {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            right: 15px;
+            border: 3px solid #f1f1f1;
+            z-index: 9;
+        }
+
+        /* Add styles to the form container */
+        .form-container {
+            max-width: 300px;
+            padding: 10px;
+            background-color: white;
+        }
+
+        /* Full-width textarea */
+        .form-container textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            background: #f1f1f1;
+            resize: none;
+            min-height: 200px;
+        }
+
+        /* When the textarea gets focus, do something */
+        .form-container textarea:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        /* Set a style for the submit/login button */
+        .form-container .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
+            background-color: red;
+        }
+
+        /* Add some hover effects to buttons */
+        .form-container .btn:hover,
+        .open-button:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <nav role="navigation">
+        <div id="navbar">
+            <div id="menuToggle">
+                <!--
+    A fake / hidden checkbox is used as click reciever,
+    so you can use the :checked selector on it.
+    -->
+                <input type="checkbox" />
+
+                <!--
+    Some spans to act as a hamburger.
+    
+    They are acting like a real hamburger,
+    not that McDonalds stuff.
+    -->
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <!--
+    Too bad the menu has to be inside of the button
+    but hey, it's pure CSS magic.
+    -->
+                <ul id="menu">
+                    <a href="#">
+                        <li>Home</li>
+                    </a>
+                    <a href="#">
+                        <li>About</li>
+                    </a>
+                    <a href="#">
+                        <li>Info</li>
+                    </a>
+                    <a href="#">
+                        <li>Contact</li>
+                    </a>
+                    <a href="https://erikterwan.com/" target="_blank">
+                        <li>Show me more</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Asking for image input | The div represents the whole webpage -->
+    <div id='imageLocation'>
+        <p align="right">
+            <input type='file' id='getval' name="background-image" /><br /><br />
+        </p>
+    </div>
+    <button class="open-button" onclick="openForm()">Chat</button>
+    
+    <div class="chat-popup" id="myForm">
+        <form action="/action_page.php" class="form-container">
+            <h1>Chat</h1>
+
+            <label for="msg"><b>Message</b></label>
+            <textarea placeholder="Type message.." name="msg" required></textarea>
+
+            <button type="submit" class="btn">Send</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+    </div>
+</body>
+<script type="text/javascript">
+    // Essentially we are telling the system that the uploaded/chosen image is to be set as the background by identifying the id and applying the image url
+    document.getElementById('getval').addEventListener('change', readURL, true);
+
+    function readURL() {
+        var file = document.getElementById("getval").files[0];
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            document.getElementById('imageLocation').style.backgroundImage = "url(" + reader.result + ")";
+        }
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {}
+    }
+
+    // When the user scrolls the page, execute myFunction
+    window.onscroll = function() {
+        myFunction()
+    };
+
+    // Get the navbar
+    var navbar = document.getElementById("navbar");
+
+    // Get the offset position of the navbar
+    var sticky = navbar.offsetTop;
+
+    // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+</script>
+
+</html>
