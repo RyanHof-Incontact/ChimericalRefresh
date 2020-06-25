@@ -232,16 +232,16 @@
         .image-upload .img-top {
             display: none;
         }
-        
+
         .image-upload:hover .img-bot {
             display: none;
         }
-        
+
         .image-upload:hover .img-top {
             display: inline;
             cursor: pointer;
         }
-        
+
         .image-upload>input {
             display: none;
         }
@@ -320,14 +320,38 @@
             </div>
         </div>
     </div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyB_0kJs143CsbN3YUprUAFeVHoXSATmWtE",
+        authDomain: "chimerical-refresh.firebaseapp.com",
+        databaseURL: "https://chimerical-refresh.firebaseio.com",
+        projectId: "chimerical-refresh",
+        storageBucket: "chimerical-refresh.appspot.com",
+        messagingSenderId: "1012344168051",
+        appId: "1:1012344168051:web:bfdf6e46734badaa059406",
+        measurementId: "G-JDTYM481FN"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
 </body>
 <script type="text/javascript">
 
     // Setup Variables - These are done either to the page itself or when the page loads
     document.getElementById('getval').addEventListener('change', readURL, true);
     document.ready(closeForm());
-   
-    
+
+
     // Functions for open and closing the contact us/chat form
     function openForm() {
         document.getElementById("browser").style.display = "block";
@@ -352,7 +376,7 @@
     function gotoIN() {
         window.location = "www.instagram.com";
     }
-    
+
     // Function for taking the file/screenshot uploaded and appending the css to have the image set as the background
     function readURL() {
         var file = document.getElementById("getval").files[0];
