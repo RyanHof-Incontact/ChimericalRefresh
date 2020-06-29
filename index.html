@@ -1,47 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Basic HTML5 Template</title>
+    <title>Hello, World!</title>
 
     <!-- Bootstrap Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</head>
-<body>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Message Input Field -->
-<div class="row">
-  <div class="col-xs-12 form-group">
-    <input type="text"
-      class="form-control input-lg"
-      id="helloMessageInput"
-      placeholder="Enter your message here...">
-  </div>
-</div>
+  </head>
+  <body>
 
-<!-- Send Button-->
-<div class="row">
-  <div class="col-xs-12 form-group">
-    <button class="btn btn-default btn-block btn-lg"
-      onclick="sendHelloMessage()">
-      Send
-    </button>
-  </div>
-</div>
+    <div class="container">
+      <div class="jumbotron">
+        <h1 class="text-center">Hello, world!</h1>
+        <p class="text-center">
+          A simple hello could lead to a million things
+        </p>
+      </div>
 
-<!-- Place to show latest input message -->
-<h2 class="text-center"> Latest Hello Message </h2>
-<h3 id="helloMessageOutput" class="text-center text-warning">
-  <span class="text-info"> Latest message will appear here... </span>
-</h3>
+      <!-- Message input field -->
+      <div class="row">
+        <div class="col-xs-12 form-group">
+          <input type="text"
+              class="form-control input-lg"
+              id="helloMessageInput"
+              placeholder="Enter your Hello Message here...">
+        </div>
+      </div>
 
-<!-- Bootstrap Javascript required -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+      <!-- Send button -->
+      <div class="row">
+        <div class="col-xs-12 form-group">
+          <button class="btn btn-default btn-block btn-lg"
+              onClick="sendHelloMessage()">
+              Send
+          </button>
+        </div>
+      </div>
+      <!-- Place to show the latest message from the database -->
+      <h2 class="text-center">Latest Hello Message</h2>
+      <h3 id="helloMessageOutput" class="text-center text-warning">
+        <span class="text-info">Latest message will appear here...</span>
+      </h3>
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+
+    <!-- Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-analytics.js"></script>
+    <script>
+      // Initialize Firebase
+      var firebaseConfig = {
+    apiKey: "AIzaSyB_0kJs143CsbN3YUprUAFeVHoXSATmWtE",
+    authDomain: "chimerical-refresh.firebaseapp.com",
+    databaseURL: "https://chimerical-refresh.firebaseio.com",
+    projectId: "chimerical-refresh",
+    storageBucket: "chimerical-refresh.appspot.com",
+    messagingSenderId: "1012344168051",
+    appId: "1:1012344168051:web:bfdf6e46734badaa059406",
+    measurementId: "G-JDTYM481FN"
+  };
+
+      // Firebase instance.
+      firebase.initializeApp(config);
+
+      // Database reference to the helloMessage key.
+      var helloMessageReference = firebase.database().ref('helloMessage');
+
+      // DOM element shortcuts.
+      var helloMessageInput = document.getElementById('helloMessageInput');
+      var helloMessageOutput= document.getElementById('helloMessageOutput');
+
+      // On every value change, refresh related DOM elements.
+      helloMessageReference.on('value', function (snapshot) {
+        helloMessageOutput.innerText = snapshot.val();
+        helloMessageInput.value = '';
+      });
+
+      // Function to save the new Hello Message to the database.
+      function sendHelloMessage() {
+        // Variable to hold the message.
+        var helloMessage = '';
+        // If no message is entered, set the sad face.
+        // Else, get the entered message.
+        if (helloMessageInput.value.length == 0) {
+          helloMessage = 'No Hello... :(';
+        }
+        else {
+          helloMessage = helloMessageInput.value;
+        }
+
+        // Use the database reference to set the new value.
+        helloMessageReference.set(helloMessage);
+      }
+    </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <!-- Bootstrap Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
   </body>
 </html>
