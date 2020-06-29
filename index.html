@@ -4,7 +4,30 @@
 </head>
 
 <body>
-  <h1>hello world</h1>
+<!-- message input -->
+<div class="row">
+  <div class="col-xs-12 form-group">
+    <input type="text"
+      class="form-control input-lg"
+      id="helloMessageInput"
+      placeholder="Enter your hello Message Here...">
+  </div>
+</div>
+
+<!-- Send Button-->
+<div class="row">
+  <div class="col-xs-12 form-group">
+    <button class="btn btn-default btn-block btn-lg"
+      onClick="sendHelloMessage()">
+    </button>
+  </div>
+</div>
+
+<h2 class="text-center"> Latest Hello Message </h2>
+  <h3 id="helloMessageOutput" class="text-center text-warning">
+    <span class="text-info">Latest Message will appear here </span>
+  </h3>
+
 </body>
 
 </html>
