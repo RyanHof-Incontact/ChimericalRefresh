@@ -1,0 +1,393 @@
+<html>
+
+<head>
+    <style type="text/css">
+        @import "compass/css3";
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600);
+        @import url(http://weloveiconfonts.com/api/?family=brandico|entypo);
+
+        /* entypo */
+        [class*="entypo-"]:before {
+            font-family: 'entypo', sans-serif;
+            padding-right: 10px;
+        }
+
+        #imageLocation {
+            background-image: url('');
+            background-size: contain;
+            /* Can also replace 'contain' with "100% 100%" | Which will stretch the image to fit the whole div */
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100%;
+            width: 100%;
+            border: 1px solid #bbb;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+
+            /* make it look decent enough */
+            background: #232323;
+            color: #cdcdcd;
+            font-family: "Avenir Next", "Avenir", sans-serif, "Arial", "Helvetica";
+        }
+
+        *,
+        *:before,
+        *:after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border: 0;
+        }
+
+
+        #browser {
+            margin: 10px auto;
+            color: white;
+            width: 20%;
+            height: 450px;
+            -webkit-box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.5);
+            position: fixed;
+            bottom: 133px;
+            right: 28px;
+        }
+
+        #browser-bar {
+            background: #394141;
+            width: 100%;
+            padding: 8px;
+            margin: 0 auto;
+            font-weight: 300;
+            font-size: 0.9em;
+            position: relative;
+        }
+
+        #browser-bar p {
+            text-align: center;
+        }
+
+        .arrow {
+            position: absolute;
+            right: 3px;
+            top: 6px;
+            font-size: 1.2em;
+            color: #8e9699;
+        }
+
+        #content {
+            background: #454f4f;
+        }
+
+        #content:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        #content #right {
+            height: 100%;
+        }
+
+        #content #right {
+            float: left;
+            width: 100%;
+            background: #454f4f;
+            font-size: 0.75em;
+            padding: 15px;
+        }
+
+        @media all and (max-width: 780px) {
+            #content #right {
+                width: 100%;
+            }
+        }
+
+        #content #right p {
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        #content #right a:hover {
+            color: #51b2d6;
+        }
+
+        #content #right #social {
+            display: table;
+            width: 100%;
+            text-decoration: none !important;
+        }
+
+        #contect #right #social a {
+            text-decoration: none;
+            color: inherit;
+
+        }
+
+
+        #content #right .social {
+            display: table-cell;
+            text-align: center;
+            text-decoration: none !important;
+        }
+
+        #content #right form {
+            border-top: solid thin #8e9699;
+            border-bottom: solid thin #8e9699;
+            margin: 20px 0;
+            padding: 20px 0;
+        }
+
+        #content #right form input,
+        #content #right form textarea {
+            background: #394141;
+            padding: 8px;
+            margin-bottom: 8px;
+            width: 100%;
+            color: white;
+        }
+
+        #content #right form input:last-of-type,
+        #content #right form textarea:last-of-type {
+            margin-bottom: 0;
+        }
+
+        #content #right form input[type='submit'],
+        #content #right form textarea[type='submit'] {
+            text-transform: uppercase;
+            background: #7bc087;
+            width: 50%;
+            color: white;
+            margin-top: 5px;
+        }
+
+        #content #right form input[type='submit']:hover,
+        #content #right form textarea[type='submit']:hover {
+            background: #58b068;
+            -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        #content #right form input[type='textarea'],
+        #content #right form textarea[type='textarea'] {
+            min-height: 75px;
+            vertical-align: text-top;
+        }
+
+        #content #right p.other {
+            font-size: 11.7;
+            margin-bottom: 5px;
+            text-transform: lowercase;
+            font-weight: 100;
+        }
+
+        #content #right p.other b {
+            text-transform: none;
+            font-size: 12.7;
+        }
+
+        #content #right p.other,
+        #content #right p.other a {
+            color: #8e9699;
+            text-decoration: none;
+        }
+
+        #contact-form-btn .Contact_us_btn {
+            text-transform: uppercase;
+            width: 75px;
+            height: 75px;
+            color: white;
+            margin-top: 5px;
+            position: fixed;
+            bottom: 23px;
+            right: 28px;
+        }
+
+        .card .img-top {
+            display: none;
+            position: fixed;
+            bottom: 23px;
+            right: 28px;
+
+        }
+
+        .card:hover .img-top {
+            display: inline;
+
+        }
+
+        .image-upload .input_image {
+            position: fixed;
+            bottom: 19px;
+            right: 70px;
+            width: 55px;
+            height: 50px;
+
+        }
+
+        .image-upload .img-top {
+            display: none;
+        }
+
+        .image-upload:hover .img-bot {
+            display: none;
+        }
+
+        .image-upload:hover .img-top {
+            display: inline;
+            cursor: pointer;
+        }
+
+        .image-upload>input {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='imageLocation'>
+        <div class="image-upload">
+            <label for="getval">
+                <img class="input_image img-bot" src="addImage.png" />
+                <img class="input_image img-top" src="addImageHover.png" />
+            </label>
+
+            <input id="getval" type="file" />
+        </div>
+        <div id='contact-form-btn'>
+            <div class="card">
+                <input id='contact-us-btn' class="Contact_us_btn" onclick="openForm()" type="image" src="chatBtn.png">
+                <input id='contact-us-btn' class="Contact_us_btn img-top" onclick="openForm()" type="image" src="chatHoverBtn.png">
+            </div>
+
+            <div id='browser'>
+                <div id='browser-bar'>
+                    <p>Contact Us</p>
+                    <a onclick="closeForm()">
+                        <span class='arrow entypo-resize-full'></span>
+                    </a>
+                </div>
+                <div id='content'>
+                    <div id='right'>
+                        <p>Connect</p>
+                        <div id='social'>
+                            <a class='social' onclick="gotoFB()">
+                                <span class='entypo-facebook'></span>
+                            </a>
+                            <a class='social' onclick="gotoTW()">
+                                <span class='entypo-twitter'></span>
+                            </a>
+                            <a class='social' onclick="gotoLI()">
+                                <span class='entypo-linkedin'></span>
+                            </a>
+                            <a class='social' onclick="gotoGP()">
+                                <span class='entypo-gplus'></span>
+                            </a>
+                            <a class='social' onclick="gotoIN()">
+                                <span class='entypo-instagrem'></span>
+                            </a>
+                        </div>
+                        <form>
+                            <p>Get in Contact</p>
+                            <input placeholder='Email' id="emailAdd" type='email'>
+                            <input placeholder='Subject' id="emailSubject" type='text'>
+                            <textarea placeholder='Message' id="emailBody" rows='4'></textarea>
+                            <input placeholder='Send' type='submit' onclick="emailVars()" enctype="text/plain">
+                            <script> // Contact Us - Send an email based the input above
+                                 function emailVars() {
+                                    var messageBody = document.getElementById('emailBody').value;
+                                    var subject = document.getElementById('emailSubject').value;
+                                    var email = document.getElementById('emailAdd').value;
+                                    // Crafting the url by appending the elements added above
+                                    var url = ("mailto:chimericalemail@mail.nice-incontact.com?subject="+subject+"&body="+messageBody+"%20%0D%0D%0D%0DShowAnalytics")
+                                    window.location = url;
+                                    // Close form after we submit the email
+                                    closeForm();
+                                }
+                            </script>
+                        </form>
+                        <p>other way</p>
+                        <p class='other entypo-mail'>
+                            <a href='mailto:chimericalemail@mail.nice-incontact.com'><b id="Identifier">Email: </b>chimericalemail@mail.nice-incontact.com</a> <!-- Plan on adding a hidden element that will accept the parameters of the database, for script vars -->
+                        </p>
+                        <p class='other entypo-phone'><b id="Identifier">Text Us: </b>(+1) 385 218 4959</p> <!-- Same as written above -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Firebase DATABASE Code.... start -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-analytics.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyB_0kJs143CsbN3YUprUAFeVHoXSATmWtE",
+        authDomain: "chimerical-refresh.firebaseapp.com",
+        databaseURL: "https://chimerical-refresh.firebaseio.com",
+        projectId: "chimerical-refresh",
+        storageBucket: "chimerical-refresh.appspot.com",
+        messagingSenderId: "1012344168051",
+        appId: "1:1012344168051:web:bfdf6e46734badaa059406",
+        measurementId: "G-JDTYM481FN"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+<!-- Firebase DATABASE Code.... end -->
+
+</body>
+<script type="text/javascript">
+
+    // Setup Variables - These are done either to the page itself or when the page loads
+    document.getElementById('getval').addEventListener('change', readURL, true);
+    document.ready(closeForm());
+
+
+    // Functions for open and closing the contact us/chat form
+    function openForm() {
+        document.getElementById("browser").style.display = "block";
+    }
+    function closeForm() {
+        document.getElementById("browser").style.display = "none";
+    }
+
+    // Functions for social media components ** May Change To Brand Embassy Interaction **
+    function gotoFB() {
+        window.location = "www.facebook.com";
+    }
+    function gotoTW() {
+        window.location = "www.twitter.com";
+    }
+    function gotoLI() {
+        window.location = "www.linkedin.com";
+    }
+    function gotoGP() {
+        window.location = "www.googleplus.com";
+    }
+    function gotoIN() {
+        window.location = "www.instagram.com";
+    }
+
+    // Function for taking the file/screenshot uploaded and appending the css to have the image set as the background
+    function readURL() {
+        var file = document.getElementById("getval").files[0];
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            document.getElementById('imageLocation').style.backgroundImage = "url(" + reader.result + ")";
+        }
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {}
+    }
+</script>
+</html>
