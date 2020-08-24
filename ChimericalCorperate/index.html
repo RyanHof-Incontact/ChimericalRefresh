@@ -17,22 +17,20 @@
     <!-- Insert company logo above -->
       </a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-<!-- below is the hear our voice nav item --> 
+    <!-- Below is the Hear our Voice nav item-->
         <li class="logged-in" style="display: none;">
-          <a href="#" class="grey-text modal-trigger" data-target="modal-hearourvoice">Give us a Call</a>
-        </li>
-<!-- below are the account nav items -->
+            <a href="#" class="grey-text modal-trigger" data-target="modal-hearourvoice">Give us a Call</a>
+          </li>
+    <!-- Below are the account nav items-->
           <li class="logged-in" style="display: none;">
             <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
           </li>
           <li class="logged-in" style="display: none;">
             <a href="#" class="grey-text" id="logout">Logout</a>
           </li>
-    <!-- ignore this nav item below
           <li class="logged-in" style="display: none;">
             <a href="#" class="grey-text modal-trigger" data-target="modal-create">Create Guide</a>
           </li>
-    ignore this nav item above -->
           <li class="logged-out" style="display: none;">
             <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
           </li>
@@ -44,10 +42,8 @@
   </nav>
 <!-- NAV BAR ABOVE -->
 
-
 <!-- MODALS BELOW -->
-
-<!-- SIGN UP MODAL -->
+    <!-- SIGN UP MODAL -->
     <div id="modal-signup" class="modal">
         <div class="modal-content">
         <h4>Sign up</h4><br />
@@ -69,7 +65,7 @@
         </div>
     </div>
 
-<!-- LOGIN MODAL -->
+    <!-- LOGIN MODAL -->
     <div id="modal-login" class="modal">
         <div class="modal-content">
           <h4>Login</h4><br />
@@ -87,18 +83,7 @@
         </div>
       </div>
 
-<!-- Hear our Voice Modal -->
-      <div id="modal-hearourvoice" class="modal">
-        <div class="modal-content center-align">
-          <h4> Hear our Voice </h4><br />
-          <div class="input-field">
-            <input type="text" id="hov-phonenumber" required>
-            <label for="hov-phonenumber">Phone Number to call</label>
-          </div>
-        </div>
-      </div>
-
-<!-- ACCOUNT MODAL -->
+      <!-- ACCOUNT MODAL -->
       <div id="modal-account" class="modal">
         <div class="modal-content center-align">
           <h4>Account details</h4><br />
@@ -106,9 +91,22 @@
         </div>
       </div>
 
-  <!-- CREATE GUIDE MODAL -->
-<!--  Ignore this modal -->
-      <!--
+      <!-- Hear our Voice Modal -->
+      <div id="modal-hearourvoice" class="modal">
+        <div class="modal-content center-align">
+          <h4> Hear our Voice </h4><br />
+        <form id="Hear-Our-Voice">
+          <div class="input-field">
+              <input type="text" id="hov-phonenumber" required>
+              <label for="hov-phonenumber">Phone Number to call</label>
+          </div>
+            <button class="btn yellow darken-2 z-depth-0">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- CREATE GUIDE MODAL -->
+      <!-- -->
       <div id="modal-create" class="modal">
         <div class="modal-content">
           <h4>Create Environment Access</h4><br />
@@ -125,7 +123,6 @@
           </form>
         </div>
       </div>
--->
 
     <!-- Environment List -->
     <div class="container" style="margin-top: 40px;">
@@ -166,8 +163,7 @@
     </script>
 <!-- DO NOT DELETE ABOVE -->
 
-
-  <!-- Javascript Below -->
+  <!-- Javascript References Below -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="scripts/auth.js"></script>
   <script src="scripts/index.js"></script>
