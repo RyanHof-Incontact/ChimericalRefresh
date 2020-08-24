@@ -6,7 +6,7 @@
     <title>Chimerical Corporate</title>
 </head>
 <body>
-<body class="grey lighten-3"> 
+<body class="grey lighten-3">
 
 <!-- NAV BAR BELOW -->
   <nav class="z-depth-0 grey lighten-4">
@@ -17,15 +17,22 @@
     <!-- Insert company logo above -->
       </a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
+<!-- below is the hear our voice nav item --> 
+        <li class="logged-in" style="display: none;">
+          <a href="#" class="grey-text modal-trigger" data-target="modal-hearourvoice">Give us a Call</a>
+        </li>
+<!-- below are the account nav items -->
           <li class="logged-in" style="display: none;">
             <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
           </li>
           <li class="logged-in" style="display: none;">
             <a href="#" class="grey-text" id="logout">Logout</a>
           </li>
+    <!-- ignore this nav item below
           <li class="logged-in" style="display: none;">
             <a href="#" class="grey-text modal-trigger" data-target="modal-create">Create Guide</a>
           </li>
+    ignore this nav item above -->
           <li class="logged-out" style="display: none;">
             <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
           </li>
@@ -39,7 +46,8 @@
 
 
 <!-- MODALS BELOW -->
-    <!-- SIGN UP MODAL -->
+
+<!-- SIGN UP MODAL -->
     <div id="modal-signup" class="modal">
         <div class="modal-content">
         <h4>Sign up</h4><br />
@@ -54,14 +62,14 @@
             </div>
             <div class="input-field">
                 <input type="text" id="C32-Agent" required />
-                <label for="C32-Agent">C32 Agent ID </label> 
+                <label for="C32-Agent">C32 Agent ID </label>
             </div>
             <button class="btn yellow darken-2 z-depth-0">Sign up</button>
         </form>
         </div>
     </div>
-        
-    <!-- LOGIN MODAL -->
+
+<!-- LOGIN MODAL -->
     <div id="modal-login" class="modal">
         <div class="modal-content">
           <h4>Login</h4><br />
@@ -78,17 +86,29 @@
           </form>
         </div>
       </div>
-    
-      <!-- ACCOUNT MODAL -->
+
+<!-- Hear our Voice Modal -->
+      <div id="modal-hearourvoice" class="modal">
+        <div class="modal-content center-align">
+          <h4> Hear our Voice </h4><br />
+          <div class="input-field">
+            <input type="text" id="hov-phonenumber" required>
+            <label for="hov-phonenumber">Phone Number to call</label>
+          </div>
+        </div>
+      </div>
+
+<!-- ACCOUNT MODAL -->
       <div id="modal-account" class="modal">
         <div class="modal-content center-align">
           <h4>Account details</h4><br />
           <div class="account-details"></div>
         </div>
       </div>
-    
-      <!-- CREATE GUIDE MODAL -->
-      <!-- -->
+
+  <!-- CREATE GUIDE MODAL -->
+<!--  Ignore this modal -->
+      <!--
       <div id="modal-create" class="modal">
         <div class="modal-content">
           <h4>Create Environment Access</h4><br />
@@ -105,6 +125,7 @@
           </form>
         </div>
       </div>
+-->
 
     <!-- Environment List -->
     <div class="container" style="margin-top: 40px;">
@@ -124,7 +145,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-analytics.js"></script> <!-- This is for the analytics -->
 
     <script>
-        // Chimerical Corporate web app's Firebase configuration -- DO NOT DELETE BELOW 
+        // Chimerical Corporate web app's Firebase configuration -- DO NOT DELETE BELOW
         var firebaseConfig = {
             apiKey: "AIzaSyDo0WMl_nlAC25xoFcwywdBFkbKdBdUwtI",
             authDomain: "chimericalcorporate.firebaseapp.com",
@@ -139,9 +160,9 @@
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
 
-        // make auth and firestore references - this is needed for authenticating a user / signing up / storage in cloud DB 
+        // make auth and firestore references - this is needed for authenticating a user / signing up / storage in cloud DB
         const auth = firebase.auth();
-        const db = firebase.firestore();    
+        const db = firebase.firestore();
     </script>
 <!-- DO NOT DELETE ABOVE -->
 
