@@ -1,0 +1,83 @@
+<!DOCTYPE HTML><div class="modal fade" id="hearvoiceModal" tabindex="-1" role="dialog" aria-labelledby="hearvoiceModal" aria-hidden="true">
+<!-- CREATE VARIABLE FROM GLOBALLS INITIATED IN /index.php -->
+<?php
+global $user;
+global $phone;
+global $first_name;
+global $last_name;
+global $incontact_id;
+global $location;
+?>
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="location.reload();">&times;</button>
+<h4 class="modal-title" id="hearvoiceLabel"><?php _e('modules.hearvoice') ?></h4>
+</div>
+<div class="modal-body">
+
+ <!--
+<form target="hideFrame" name="CallBackForm" class="form-horizontal" role="form" action="https://home-c4.incontact.com/inContact/Manage/Scripts/Spawn.aspx" method="GET">
+<input type="hidden" id="scriptName" name="scriptName" value="ChimericalCorporation\Chimerical v2\ChimericalClickToCall" />
+<input type="hidden" id="bus_no" name="bus_no" value="12" />
+<input type="hidden" id="scriptId" name="scriptId" value="3273176" />
+<input type="hidden" id="skill_no" name="skill_no" value="220019" />
+<input type="hidden" id="Guid" name="Guid" value="e4950973-9b25-4f0c-a2ac-8c548ca20f24" />
+-->
+<form target="hideFrame" name="CallBackForm" class="form-horizontal" role="form" action="https://home-c32.nice-incontact.com/inContact/Manage/Scripts/Spawn.aspx" method="GET">
+<input type="hidden" id="scriptName" name="scriptName" value="ChimericalCorporation\ChimericalClickToCall" />
+<input type="hidden" id="bus_no" name="bus_no" value="4596619" />
+<input type="hidden" id="scriptId" name="scriptId" value="24690139" />
+<input type="hidden" id="skill_no" name="skill_no" value="4020410" />
+<input type="hidden" id="Guid" name="Guid" value="06b1144c-fdc3-48ab-9064-a71a8b87bc8c" />
+
+<input type="hidden" id="p3" name="p3" value="<?= $incontact_id ?>" /> <!-- inContact UserID -->
+
+ <div class="form-group">
+<label for="p1" class="col-sm-3 control-label"><?php _e('main.name') ?>: </label>
+<div class="col-sm-9">
+<input type="text" class="form-control" placeholder="Name" id="p1" name="p1" value="<?= $first_name, ' ', $last_name ?>"/>
+</div>
+</div>
+<div class="form-group">
+<label for="p2" class="col-sm-3 control-label"><?php _e('main.phonenumber') ?>: </label>
+<div class="col-sm-9">
+<input type="text" class="form-control" Placeholder="Phone Number" id="p2" name="p2" value="<?= $phone ?>" />
+</div>
+</div>
+<div class="form-group">
+<label for="promo" class="col-sm-3 control-label"><?php _e('main.contactreason') ?>:</label>
+<div class="col-sm-9">
+<input type="text" class="form-control" id="p5" name="p5" value="<?= $location ?>" />
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-3 control-label"><?php _e('main.call') ?>:</label>
+<div class="btn-group col-sm-9" data-toggle="buttons">
+<label class="btn btn-primary active">
+<input type="radio" name="p4" id="p4" value="now" autocomplete="off" checked> <?php _e('modules.modals.hearvoice_now') ?>
+</label>
+<label class="btn btn-primary">
+<input type="radio" name="p4" id="p4" value="later" autocomplete="off"> <?php _e('modules.modals.hearvoice_later') ?>
+</label>
+</div>
+</div>
+
+ <div class="form-group">
+<label for="embed" class="col-sm-3 control-label"><?php _e('modules.modals.hearvoice_embedded') ?>:</label>
+<div class="col-sm-9">
+<input type="checkbox" class="form-control" Placeholder="Embedded Agent" id="p6" name="p6" value="True" />
+</div>
+</div>
+
+
+<div class="modal-footer">
+<input class="btn btn-default" value="<?php _e('main.submit') ?>" name="btn" type="submit" onclick="$('#hearvoiceModal').modal('hide'); location.reload();">
+</div>
+
+ </form>
+<iframe style="visibility:hidden;display:none" name="hideFrame" id="hideFrame"></iframe>
+</div>
+</div>
+</div>
+</div>
