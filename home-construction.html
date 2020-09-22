@@ -874,6 +874,26 @@
 		    location.reload();
 			return false;
 		});
+		
+		// Chimerical Corporate web app's Firebase configuration -- DO NOT DELETE BELOW
+        var firebaseConfig = {
+            apiKey: "AIzaSyDo0WMl_nlAC25xoFcwywdBFkbKdBdUwtI",
+            authDomain: "chimericalcorporate.firebaseapp.com",
+            databaseURL: "https://chimericalcorporate.firebaseio.com",
+            projectId: "chimericalcorporate",
+            storageBucket: "chimericalcorporate.appspot.com",
+            messagingSenderId: "254391940743",
+            appId: "1:254391940743:web:02aedb3e7380bde8e36a22",
+            measurementId: "G-ERTNJQDZ29"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+        // make auth and firestore references - this is needed for authenticating a user / signing up / storage in cloud DB
+        const auth = firebase.auth();
+        const db = firebase.firestore();
         </script>
+<!-- DO NOT DELETE ABOVE -->
     </body>
 </html>
