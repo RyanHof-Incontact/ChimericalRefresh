@@ -801,6 +801,36 @@
         <a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
             <i class="stack-interface stack-up-open-big"></i>
         </a>
+	    <!-- Firebase Scripts THESE HAVE TO BE BEFORE ANY OTHER SCRIPTS  dont forget, before any other scripts-->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script> <!-- This is for the authentication / user sign up -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-firestore.js"></script> <!-- This is for the database managemen, do not delete this, database will go byebye -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-analytics.js"></script> <!-- This is for the analytics -->
+
+    <script>
+        // Chimerical Corporate web app's Firebase configuration -- DO NOT DELETE BELOW
+        var firebaseConfig = {
+            apiKey: "AIzaSyDo0WMl_nlAC25xoFcwywdBFkbKdBdUwtI",
+            authDomain: "chimericalcorporate.firebaseapp.com",
+            databaseURL: "https://chimericalcorporate.firebaseio.com",
+            projectId: "chimericalcorporate",
+            storageBucket: "chimericalcorporate.appspot.com",
+            messagingSenderId: "254391940743",
+            appId: "1:254391940743:web:02aedb3e7380bde8e36a22",
+            measurementId: "G-ERTNJQDZ29"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+        // make auth and firestore references - this is needed for authenticating a user / signing up / storage in cloud DB
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+    </script>
         <script src="js/jquery-3.1.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
         <script src="js/flickity.min.js"></script>
@@ -874,25 +904,6 @@
 		    location.reload();
 			return false;
 		});
-		
-		// Chimerical Corporate web app's Firebase configuration -- DO NOT DELETE BELOW
-        var firebaseConfig = {
-            apiKey: "AIzaSyDo0WMl_nlAC25xoFcwywdBFkbKdBdUwtI",
-            authDomain: "chimericalcorporate.firebaseapp.com",
-            databaseURL: "https://chimericalcorporate.firebaseio.com",
-            projectId: "chimericalcorporate",
-            storageBucket: "chimericalcorporate.appspot.com",
-            messagingSenderId: "254391940743",
-            appId: "1:254391940743:web:02aedb3e7380bde8e36a22",
-            measurementId: "G-ERTNJQDZ29"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-
-        // make auth and firestore references - this is needed for authenticating a user / signing up / storage in cloud DB
-        const auth = firebase.auth();
-        const db = firebase.firestore();
         </script>
 <!-- DO NOT DELETE ABOVE -->
     </body>
