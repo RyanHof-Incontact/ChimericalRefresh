@@ -4,6 +4,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>Chimerical Corporate</title>
+    <style>
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+    
+    </style>
 </head>
 <body>
 <body class="grey lighten-3">
@@ -30,6 +47,12 @@
           </li>
           <li class="logged-in" style="display: none;">
             <a href="#" class="grey-text modal-trigger" data-target="modal-create">Create Guide</a>
+          </li>
+          <li class="logged-in" style="display: none;">
+            <a href="https://ryanhof-incontact.github.io/ChimericalRefresh/home-construction.html" class="grey-text modal-trigger dropdown">Verticals</a>
+          </li>
+          <li class="logged-in" style="display: none;">
+            <a href="#" class="grey-text modal-trigger dropdown">Custom Page</a>
           </li>
           <li class="logged-out" style="display: none;">
             <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
