@@ -35,13 +35,14 @@ const setupUI = (user) => {
 const setupGuides = (data) => {
 
 if (data.length){
+  db.collection('users').doc(user.uid).get().then(doc => {
   let html = '';
     data.forEach(doc => {
       const guide = doc.data();
       const li = `
         <li>
           <div class="collapsible-header grey lighten-4">${guide.title}</div>
-          <div class="collapsible-body white">${guide.content}, ${doc.data().c32agentID}</div>      
+          <div class="collapsible-body white">${guide.content}, ${doc.data().c32agentID}</div>
           <div class="collapsible-body white">${guide.environment}</div>
         </li>
       `;
