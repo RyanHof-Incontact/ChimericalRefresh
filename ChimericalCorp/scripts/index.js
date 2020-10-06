@@ -1,7 +1,7 @@
 // make reference to the List of ENV (guides)
 const guideList = document.querySelector('.guides');
 
-// reference for which NavBar items are shown based on logged in / logged out 
+// reference for which NavBar items are shown based on logged in / logged out
 const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 const accountDetails = document.querySelector('.account-details');
@@ -9,7 +9,7 @@ const accountDetails = document.querySelector('.account-details');
 // seting up the UI to dictate which should be shown or not in Nav bar
 const setupUI = (user) => {
   if (user) {
-    // output user account info 
+    // output user account info
     db.collection('users').doc(user.uid).get().then(doc => {
       const html = `
           <div>Logged in as ${user.email}</div>
@@ -31,7 +31,7 @@ const setupUI = (user) => {
   }
 }
 
-// set up Guides (envs) 
+// set up Guides (envs)
 const setupGuides = (data) => {
 
 if (data.length){
@@ -41,9 +41,9 @@ if (data.length){
       const li = `
         <li>
           <div class="collapsible-header grey lighten-4">${guide.title}</div>
-          <div class="collapsible-body white">${guide.content}</div>      
+          <div class="collapsible-body white">${guide.content}, ${doc.data().c32agentID}</div>      
           <div class="collapsible-body white">${guide.environment}</div>
-        </li> 
+        </li>
       `;
       html += li
     });
@@ -60,8 +60,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var modals = document.querySelectorAll('.modal');
     M.Modal.init(modals);
-  
+
     var items = document.querySelectorAll('.collapsible');
     M.Collapsible.init(items);
-  
+
   });
