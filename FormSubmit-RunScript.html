@@ -1,0 +1,53 @@
+<form target="hideFrame" name="CallBackForm" class="form-horizontal" role="form" action="https://home-b2.incontact.com/inContact/Manage/Scripts/Spawn.aspx" method="GET">
+<input type="hidden" id="scriptName" name="scriptName" value="ChimericalCorporation\ChimericalClickToCall" />
+<input type="hidden" id="bus_no" name="bus_no" value="4594685" />
+<input type="hidden" id="scriptId" name="scriptId" value="4275420" />
+<input type="hidden" id="skill_no" name="skill_no" value="280222" />
+<input type="hidden" id="Guid" name="Guid" value="32e0c6c6-a9e0-46bd-8ccd-2baf577b3fdc" />
+
+<input type="hidden" id="p3" name="p3" value="<?= $incontact_id ?>" /> <!-- inContact UserID -->
+
+ <div class="form-group">
+<label for="p1" class="col-sm-3 control-label"><?php _e('main.name') ?>: </label>
+<div class="col-sm-9">
+<input type="text" class="form-control" placeholder="Name" id="p1" name="p1" value="<?= $first_name, ' ', $last_name ?>"/>
+</div>
+</div>
+<div class="form-group">
+<label for="p2" class="col-sm-3 control-label"><?php _e('main.phonenumber') ?>: </label>
+<div class="col-sm-9">
+<input type="text" class="form-control" Placeholder="Phone Number" id="p2" name="p2" value="<?= $phone ?>" />
+</div>
+</div>
+<div class="form-group">
+<label for="promo" class="col-sm-3 control-label"><?php _e('main.contactreason') ?>:</label>
+<div class="col-sm-9">
+<input type="text" class="form-control" id="p5" name="p5" value="<?= $location ?>" />
+</div>
+</div>
+<div class="form-group">
+<label class="col-sm-3 control-label"><?php _e('main.call') ?>:</label>
+<div class="btn-group col-sm-9" data-toggle="buttons">
+<label class="btn btn-primary active">
+<input type="radio" name="p4" id="p4" value="now" autocomplete="off" checked> <?php _e('modules.modals.hearvoice_now') ?>
+</label>
+<label class="btn btn-primary">
+<input type="radio" name="p4" id="p4" value="later" autocomplete="off"> <?php _e('modules.modals.hearvoice_later') ?>
+</label>
+</div>
+</div>
+
+ <div class="form-group">
+<label for="embed" class="col-sm-3 control-label"><?php _e('modules.modals.hearvoice_embedded') ?>:</label>
+<div class="col-sm-9">
+<input type="checkbox" class="form-control" Placeholder="Embedded Agent" id="p6" name="p6" value="True" />
+</div>
+</div>
+
+
+<div class="modal-footer">
+<input class="btn btn-default" value="<?php _e('main.submit') ?>" name="btn" type="submit" onclick="$('#hearvoiceModal').modal('hide'); location.reload();">
+</div>
+
+ </form>
+<iframe style="visibility:hidden;display:none" name="hideFrame" id="hideFrame"></iframe>
