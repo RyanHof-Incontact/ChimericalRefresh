@@ -6,7 +6,8 @@ const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 const accountDetails = document.querySelector('.account-details');
 
-const C32FBagentid = ${doc.data().c32agentID}
+const C32FBagentid = ${doc.data().c32agentID};
+
 // seting up the UI to dictate which should be shown or not in Nav bar
 const setupUI = (user) => {
   if (user) {
