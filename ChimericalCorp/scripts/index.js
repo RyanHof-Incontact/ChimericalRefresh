@@ -18,6 +18,9 @@ const setupUI = (user) => {
         accountDetails.innerHTML = html;
     })
 
+    db.document.getElementById(C32AgentFB).innerHTML{
+      ${doc.data().c32agentID}
+    }
     //toggle UI elements for logged in users
     loggedInLinks.forEach(item => item.style.display = 'block');
     loggedOutLinks.forEach(item => item.style.display = 'none');
