@@ -40,17 +40,18 @@ const setupGuides = (data) => {
 if (data.length){
   let html = '';
     data.forEach(doc => {
+      db.collection('users').doc(user.uid).get().then(doc => {
       const guide = doc.data();
-      const user = db.collection('users').doc(user.uid).get();
       const li = `
         <li>
           <div class="collapsible-header grey lighten-4">${guide.title}</div>
-          <div class="collapsible-body white">C32 Agent ID: ${user.c32agentID}</div>
+          <div class="collapsible-body white">C32 Agent ID: ${doc.data().c32agentID}</div>
           <div class="collapsible-body white">${guide.environment}</div>
         </li>
       `;
       html += li
-    });
+    })
+  });
 
     guideList.innerHTML = html
   } else {
