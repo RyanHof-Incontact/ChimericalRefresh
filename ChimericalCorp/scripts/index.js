@@ -14,7 +14,7 @@ const setupUI = (user) => {
     db.collection('users').doc(user.uid).get().then(doc => {
       const html = `
           <div>Logged in as ${user.email}</div>
-          console.log(C32 Agent Id: ${doc.data().c32agentID});
+           ${doc.data().c32agentID}
           <div>C32 Agent Id: ${doc.data().c32agentID}</div>
         `;
         accountDetails.innerHTML = html;
@@ -44,7 +44,7 @@ if (data.length){
       const li = `
         <li>
           <div class="collapsible-header grey lighten-4">${guide.title}</div>
-          <div class="collapsible-body white">C32 Agent ID: ${doc.data().c32agentID}</div>
+          <div class="collapsible-body white">C32 Agent ID: `${doc.data().c32agentID}`</div>
           <div class="collapsible-body white">${guide.environment}</div>
         </li>
       `;
