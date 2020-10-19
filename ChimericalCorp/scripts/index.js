@@ -40,7 +40,7 @@ const setupGuides = (data) => {
 if (data.length){
   let html = '';
     data.forEach(doc => {
-      db.collection('users').doc(user.uid).get().then(doc => {
+      db.collection('users').doc(cred.user.uid);
       const guide = doc.data();
       const li = `
         <li>
