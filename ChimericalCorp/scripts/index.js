@@ -49,8 +49,7 @@ if (data.length){
           <div class="collapsible-body white">${guide.environment}</div>
         </li>
       `;
-      html += li
-    })
+      html += li;
   });
 
     guideList.innerHTML = html
