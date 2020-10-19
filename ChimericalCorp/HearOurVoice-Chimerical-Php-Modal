@@ -31,7 +31,7 @@ global $location;
 <input type="hidden" id="skill_no" name="skill_no" value="4020410" />
 <input type="hidden" id="Guid" name="Guid" value="06b1144c-fdc3-48ab-9064-a71a8b87bc8c" />
 
-<input type="hidden" id="p3" name="p3" value="<?= $incontact_id ?>" /> <!-- inContact UserID -->
+<input type="hidden" id="p3" name="p3" value="<?= $incontact_id ?>" /> <!-- inContact UserID    -    THIS IS WHERE FIREBASE GOES!!!!!!!!!!!!!!!!!!-->
 
  <div class="form-group">
 <label for="p1" class="col-sm-3 control-label"><?php _e('main.name') ?>: </label>
