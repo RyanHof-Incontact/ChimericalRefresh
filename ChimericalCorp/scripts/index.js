@@ -44,7 +44,7 @@ if (data.length){
       const li = `
         <li>
           <div class="collapsible-header grey lighten-4">${guide.title}</div>
-          <div class="collapsible-body white">C32 Agent ID: `${doc.data().c32agentID}`</div>
+          <div class="collapsible-body white">C32 Agent ID: ${doc.data().c32agentID}</div>
           <div class="collapsible-body white">${guide.environment}</div>
         </li>
       `;
