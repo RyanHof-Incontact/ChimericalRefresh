@@ -6,7 +6,7 @@ const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 const accountDetails = document.querySelector('.account-details');
 
-const C32FBagentid = ${doc.data().c32agentID};
+const c32agentFBID = ${doc.data().c32agentID};
 
 // seting up the UI to dictate which should be shown or not in Nav bar
 const setupUI = (user) => {
@@ -18,7 +18,7 @@ const setupUI = (user) => {
           <div>C32 Agent Id: ${doc.data().c32agentID}</div>
         `;
         accountDetails.innerHTML = html;
-    db.document.getElementById(C32AgentFB).innerHTML= C32FBagentid;
+    db.document.getElementById(C32AgentFB).innerHTML= c32agentFBID;
     })
 
 
