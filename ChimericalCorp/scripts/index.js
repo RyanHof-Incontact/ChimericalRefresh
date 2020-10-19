@@ -6,7 +6,6 @@ const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 const accountDetails = document.querySelector('.account-details');
 
-const c32agentFBID = ${doc.data().c32agentID};
 
 // seting up the UI to dictate which should be shown or not in Nav bar
 const setupUI = (user) => {
@@ -18,7 +17,6 @@ const setupUI = (user) => {
           <div>C32 Agent Id: ${doc.data().c32agentID}</div>
         `;
         accountDetails.innerHTML = html;
-    db.document.getElementById(C32AgentFB).innerHTML= c32agentFBID;
     })
 
 
@@ -45,7 +43,7 @@ if (data.length){
       const li = `
         <li>
           <div class="collapsible-header grey lighten-4">${guide.title}</div>
-          <div class="collapsible-body white">${guide.content}</div>
+          <div class="collapsible-body white">${doc.data().c32agentID}</div>
           <div class="collapsible-body white">${guide.environment}</div>
         </li>
       `;
