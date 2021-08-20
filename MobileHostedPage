@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        [data-selector="AGENT_MESSAGE_BUBBLE"]
+        {
+            background: rgb(28,56,88);
+            color: white;
+        }
+        [data-selector="SEND_BUTTON"]
+        {
+            background: rgb(28,56,88);
+            color: white;
+        }
+        [data-selector="CUSTOMER_MESSAGE_BUBBLE"]
+        {
+            background: gray;
+            color: black;
+        }
+    </style>
+    <head>
+          <title>demo</title>
+          <meta name="viewport" content="width=device-width, shrink-to-fit=YES">
+       </head>
+<body>
+
+<p id="demo"></p>
+
+<script>
+                    (function (i, s, o, r, g, v, a, m) {
+                    g = v ? g + '?v=' + v : g; i['BrandEmbassy'] = r;
+                    i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }; i[r].l = +new Date();
+                    a = s.createElement(o); m = s.getElementsByTagName(o)[0]; a.async = 1;
+                    a.src = g + '?' + Math.round(Date.now() / 1000 / 3600); m.parentNode.insertBefore(a, m)
+                    }) (window, document, 'script', 'brandembassy', 'https://livechat-static-de-na1.niceincontact.com/4/chat.js');
+                    brandembassy('init', 1102, 'chat_60b8808c-573a-4696-9588-162a0c2a6c63');
+                    brandembassy('hideHeader');
+                    brandembassy('setCustomerName','USAA');
+                    brandembassy('showSendButton');
+                    brandembassy('setFullDisplay');
+                    brandembassy('openChatWindow');
+                    brandembassy('autoStartSession')
+</script>
+
+</body>
+</html>
